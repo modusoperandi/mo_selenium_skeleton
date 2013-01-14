@@ -10,4 +10,16 @@ task :environment do
   
 end
 
+task "db:test:prepare" do
+  
+end
+
+task "db:create" do
+  
+end
+
+task "db:migrate" do
+  
+end
+
 load 'mo_ci/tasks/ci.rake'
