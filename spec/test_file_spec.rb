@@ -25,7 +25,7 @@ describe "TestFileSpec" do
   end
   
   it "test_file_spec" do
-    @driver.get "https://pegasus.pressmatrix.com"
+    @driver.get "https://pegasus.pressmatrix.com/en/users/sign_in"
     # Warning: assertTextPresent may require manual changes
     @driver.find_element(:css, "BODY").text.should =~ /^[\s\S]*Email[\s\S]*$/
     # Warning: assertTextPresent may require manual changes
