@@ -5,10 +5,10 @@ require "rspec"
 require 'mo_test_helpers/selenium_rspec'
 include RSpec::Expectations
 
-describe "TestFile" do
+describe "TestFileSpec" do
 
   before(:each) do
-    @base_url = "https://pegasus.pressmatrix.com"
+    @base_url = "https://www.google.com/"
     @accept_next_alert = true
     @verification_errors = []
     
@@ -22,21 +22,23 @@ describe "TestFile" do
   after(:each) do
     @driver.quit
     @verification_errors.should == []
+    @driver.save_screenshot("./screen.png")
   end
   
-  it "test_file" do
-    @driver.get(@base_url + "/")
+  it "test_file_spec" do
+    @driver.get "https://pegasus.pressmatrix.com"
     # Warning: assertTextPresent may require manual changes
-    @driver.find_element(:css, "BODY").text.should =~ /^[\s\S]*Email[\s\S]*$/
+    @driver.find_element(:css, "BODY").text.should =~ /^[\s\S]*E-Mail[\s\S]*$/
     # Warning: assertTextPresent may require manual changes
-    @driver.find_element(:css, "BODY").text.should =~ /^[\s\S]*Password[\s\S]*$/
+    @driver.find_element(:css, "BODY").text.should =~ /^[\s\S]*Passwort[\s\S]*$/
     @driver.find_element(:id, "user_email").clear
     @driver.find_element(:id, "user_email").send_keys "max@maxschulze.com"
     @driver.find_element(:id, "user_password").clear
     @driver.find_element(:id, "user_password").send_keys "test"
     @driver.find_element(:name, "commit").click
     # Warning: assertTextPresent may require manual changes
-    @driver.find_element(:css, "BODY").text.should =~ /^[\s\S]*Invalid email or password.[\s\S]*$/
+    @driver.find_element(:css, "BODY").text.should =~ /^[\s\S]*Ungültige Anmeldedaten[\s\S]*$/
+    # ERROR: Caught exception [ERROR: Unsupported command [captureEntirePageScreenshot | c:\jenkins\screen.png | ]]
   end
   
   def element_present?(how, what)
