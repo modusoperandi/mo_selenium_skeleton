@@ -20,6 +20,7 @@ describe "${className}" do
   end
   
   after(:each) do
+    @driver.save_screenshot("./screen.png")
     ${receiver}.quit
     @verification_errors.should == []
   end
