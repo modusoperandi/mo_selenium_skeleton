@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/modusoperandi/mo_test_helpers.git
-  revision: 9b278f602396ce49a1e1217a4a471348ea74ed11
+  revision: 0c02303dd3ab5ca403372b9a1f79132c2817ee00
   specs:
     mo_test_helpers (0.0.1)
       cucumber (>= 1.2.1)
