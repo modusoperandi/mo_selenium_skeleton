@@ -20,9 +20,9 @@ describe "TestFileSpec" do
   end
   
   after(:each) do
+    @driver.save_screenshot("./screen.png")
     @driver.quit
     @verification_errors.should == []
-    @driver.save_screenshot("./screen.png")
   end
   
   it "test_file_spec" do
