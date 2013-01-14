@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require "selenium-webdriver"
 require "rspec"
 require 'mo_test_helpers/selenium_rspec'
@@ -9,6 +11,12 @@ describe "${className}" do
     @base_url = "${baseURL}"
     @accept_next_alert = true
     @verification_errors = []
+    
+    @driver = SeleniumHelper.grid_selenium_browser
+
+    unless @driver
+      raise ArgumentError.new('Driver not found!')
+    end
   end
   
   after(:each) do

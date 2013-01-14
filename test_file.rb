@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require "selenium-webdriver"
 require "rspec"
 require 'mo_test_helpers/selenium_rspec'
@@ -9,6 +11,12 @@ describe "TestFile" do
     @base_url = "https://pegasus.pressmatrix.com"
     @accept_next_alert = true
     @verification_errors = []
+    
+    @driver = SeleniumHelper.grid_selenium_browser
+
+    unless @driver
+      raise ArgumentError.new('Driver not found!')
+    end
   end
   
   after(:each) do
@@ -19,16 +27,16 @@ describe "TestFile" do
   it "test_file" do
     @driver.get(@base_url + "/")
     # Warning: assertTextPresent may require manual changes
-    @driver.find_element(:css, "BODY").text.should =~ /^[\s\S]*E-Mail[\s\S]*$/
+    @driver.find_element(:css, "BODY").text.should =~ /^[\s\S]*Email[\s\S]*$/
     # Warning: assertTextPresent may require manual changes
-    @driver.find_element(:css, "BODY").text.should =~ /^[\s\S]*Passwort[\s\S]*$/
+    @driver.find_element(:css, "BODY").text.should =~ /^[\s\S]*Password[\s\S]*$/
     @driver.find_element(:id, "user_email").clear
     @driver.find_element(:id, "user_email").send_keys "max@maxschulze.com"
     @driver.find_element(:id, "user_password").clear
     @driver.find_element(:id, "user_password").send_keys "test"
     @driver.find_element(:name, "commit").click
     # Warning: assertTextPresent may require manual changes
-    @driver.find_element(:css, "BODY").text.should =~ /^[\s\S]*Ungültige Anmeldedaten[\s\S]*$/
+    @driver.find_element(:css, "BODY").text.should =~ /^[\s\S]*Invalid email or password.[\s\S]*$/
   end
   
   def element_present?(how, what)
