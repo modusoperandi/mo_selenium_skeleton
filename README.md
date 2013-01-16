@@ -13,7 +13,7 @@ Install
 * The arguments do not matter
 * Paste the following in the header field
 
-    # encoding: utf-8
+    ``# encoding: utf-8
     
     require "selenium-webdriver"
     require "rspec"
@@ -39,7 +39,7 @@ Install
         @verification_errors.should == []
       end
       
-      it "${methodName}" do
+      it "${methodName}" do``
 
 * Click ok
 * Write a test
