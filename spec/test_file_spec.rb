@@ -36,7 +36,7 @@ describe "TestFileSpec" do
     @driver.find_element(:id, "user_password").send_keys "test"
     @driver.find_element(:name, "commit").click
     # Warning: assertTextPresent may require manual changes
-    # @driver.find_element(:css, "BODY").text.should =~ /^[\s\S]*Invalid email or password[\s\S]*$/
+    @driver.find_element(:css, "BODY").text.should =~ /^[\s\S]*Invalid[\s\S]*$/
     # ERROR: Caught exception [ERROR: Unsupported command [captureEntirePageScreenshot | c:\jenkins\screen.png | ]]
   end
   
